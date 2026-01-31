@@ -36,6 +36,20 @@
             }
             return new Height(Totalfeet, Totalinches);
         }
+        public static override Height operator +(Height a, Height b)
+        {
+            int Totalfeet = a.feet + b.feet;
+            double Totalinches = a.inches + b.inches;
+
+            if (Totalinches >= 12)
+            {
+                Totalfeet += (int)(Totalinches / 12);
+                Totalinches = Totalinches % 12;
+            }
+            return new Height(Totalfeet, Totalinches);
+        }
+
+        }
         public override string ToString()
         {
             return $"Height: {feet} feet {inches} inches";
@@ -52,7 +66,7 @@
                 Console.WriteLine(h3);
                 Console.WriteLine(h1.AddHeight(h2));
                 Console.WriteLine(h3.AddHeight(h1));
-
+            Console.WriteLine(h1 + h2);
 
 
             }
