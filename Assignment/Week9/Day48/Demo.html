@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Practice</title>
+  </head>
+
+  <body>
+    <!-- <h1>Hello World</h1>
+    <h2>Hello World</h2>
+    <h3>Hello World</h3>
+    <h4>Hello World</h4>
+    <h5>Hello World</h5>
+    <h6>Hello World</h6>
+
+    <a href="https://in.pinterest.com/pin/824088431847551604/" target="_blank">
+      Heading Tags
+    </a>
+
+    <br /><br />
+
+    <a href="https://in.pinterest.com/pin/824088431847551604/" target="_blank">
+      <img src="./picture1.jpg" height="125" width="500" alt="News Image" />
+    </a>
+
+    <ul>
+      <li>Item1</li>
+      <li>Item2</li>
+      <li>Item3</li>
+    </ul>
+
+    <ol reversed type="i" start="5">
+      <li>Item1</li>
+      <li>Item2</li>
+      <li>Item3</li>
+    </ol>
+
+    <table border="2">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th colspan="2">Marks</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Kush</td>
+          <td>5</td>
+          <td>10</td>
+          <td>20</td>
+        </tr>
+      </tbody>
+    </table> -->
+
+    <h2>Employee Registration Form</h2>
+
+    <form>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" id="ename" name="ename" required /></td>
+        </tr>
+
+        <tr>
+          <td>Gender:</td>
+          <td>
+            <input type="radio" name="gender" value="Male" /> Male
+            <input type="radio" name="gender" value="Female" /> Female
+          </td>
+        </tr>
+
+        <tr>
+          <td><label> City:</label></td>
+          <td>
+            <select id="city" name="city" required>
+              <option value="1">Delhi</option>
+              <option value="2">Mumbai</option>
+              <option value="3">Pune</option>
+              <option value="4">Bangalore</option>
+              <option value="5">Hyderabad</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label>DOB</label></td>
+          <td>
+            <input
+              type="date"
+              name="dob"
+              id="dob"
+              required
+              min="2000-01-01"
+              max="2025-01-01"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td><input type="submit" /></td>
+          <td><input type="reset" /></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
