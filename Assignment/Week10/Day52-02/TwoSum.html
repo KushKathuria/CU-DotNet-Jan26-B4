@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Addition</title>
+
+    <script>
+      function cal() {
+        let n1 = document.getElementById("num1");
+        let n2 = document.getElementById("num2");
+        let out = document.getElementById("output");
+
+        if (
+          !isNaN(n1.value) &&
+          !isNaN(n2.value) &&
+          n1.value != "" &&
+          n2.value != ""
+        ) {
+          out.value = Number(n1.value) + Number(n2.value);
+          out.style.backgroundColor = "lightgreen";
+        } else {
+          out.value = "Error";
+          out.style.backgroundColor = "orange";
+        }
+      }
+
+      function resultdisplay(id) {
+        if (id.value == "") {
+          id.style.backgroundColor = "red";
+        } else if (isNaN(id.value)) {
+          id.style.backgroundColor = "yellow";
+        } else {
+          id.style.backgroundColor = "white";
+        }
+      }
+
+      // if (n2.value == "") {
+      //   n2.style.backgroundColor = "red";
+      //   valid = false;
+      // } else if (isNaN(n2.value)) {
+      //   n2.style.backgroundColor = "yellow";
+      //   valid = false;
+      // } else {
+      //   n2.style.backgroundColor = "white";
+      // }
+
+      //   cal(valid);
+    </script>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td>
+          <input
+            type="text"
+            id="num1"
+            placeholder="num1"
+            onblur="resultdisplay(this)"
+          />
+
+          <label>+</label>
+
+          <input
+            type="text"
+            id="num2"
+            placeholder="num2"
+            onblur="resultdisplay(this)"
+          />
+
+          <button onclick="cal()">=</button>
+
+          <input type="text" id="output" readonly placeholder="output" />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
