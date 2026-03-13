@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-4">
+
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="name@gmail.com">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <textarea class="form-control" id="name" rows="1"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Feedback</label>
+        <textarea class="form-control" id="feedback" rows="3"></textarea>
+    </div>
+
+    <div class="col-auto">
+        <button type="button" class="btn btn-primary mb-3" onclick="display()">Confirm identity</button>
+    </div>
+
+</div>
+
+<script>
+
+    function display(){
+
+        var email = document.getElementById("email").value;
+        var name = document.getElementById("name").value;
+        var feedback = document.getElementById("feedback").value;
+
+        alert("Email: " + email + "\nName: " + name + "\nFeedback: " + feedback);
+
+    }
+
+</script>
