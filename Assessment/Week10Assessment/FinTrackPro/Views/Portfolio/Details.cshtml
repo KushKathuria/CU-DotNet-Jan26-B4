@@ -1,0 +1,18 @@
+﻿@model FinTrackPro.Models.Assets
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Asset Details</h2>
+
+<div class="card p-3">
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Purchase Price:</strong> @Model.PurchasePrice</p>
+    <p><strong>Type:</strong> @Model.Type</p>
+    <p><strong>Purchase Date:</strong> @Model.PurchaseDate</p>
+</div>
+
+<br />
+
+<a asp-action="Index" class="btn btn-primary">Back to List</a>
