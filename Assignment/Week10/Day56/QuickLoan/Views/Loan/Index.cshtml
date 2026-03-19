@@ -1,0 +1,45 @@
+﻿@model IEnumerable<QuickLoan.Models.Loan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Loans</h1>
+
+<p>
+    <a asp-action="Add" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table table-hover  table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.BorowerName)</th>
+            <th>@Html.DisplayNameFor(model => model.LenderName)</th>
+            <th>@Html.DisplayNameFor(model => model.Amount)</th>
+            <th>@Html.DisplayNameFor(model => model.IsSettled)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.BorowerName</td>
+                <td>@item.LenderName</td>
+                <td>@item.Amount</td>
+                <td>@item.IsSettled</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                           onclick="return confirm('Are you sure you want to delete this loan?');">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
