@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0" version="28.2.5">
+  <diagram name="Professional Bank Architecture" id="0">
+    <mxGraphModel dx="636" dy="326" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="client" value="Client (Browser / Mobile App)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="260" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gateway" value="API Gateway&#xa;- Routing&#xa;- JWT Validation&#xa;- Rate Limiting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c8ebf;fontColor=#ffffff;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="260" y="240" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" value="Auth Service&#xa;- Login / Register&#xa;- JWT Issuer&#xa;- Claims: Email, Role" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" parent="1" vertex="1">
+          <mxGeometry x="520" y="80" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="authdb" value="Auth DB" style="shape=cylinder;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="760" y="90" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="account" value="Account Service&#xa;- Balance Management&#xa;- Deposit (CR)&#xa;- Withdraw (DR)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;" parent="1" vertex="1">
+          <mxGeometry x="520" y="240" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="accountdb" value="Account DB" style="shape=cylinder;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="760" y="260" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="txn" value="Transaction Service&#xa;- Ledger&#xa;- History&#xa;- Audit Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" parent="1" vertex="1">
+          <mxGeometry x="520" y="400" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="txndb" value="Transaction DB" style="shape=cylinder;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="760" y="410" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="loan" value="Loan Service&#xa;- Apply Loan&#xa;- Approval Workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" parent="1" vertex="1">
+          <mxGeometry x="520" y="550" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" source="client" target="gateway" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="Auth Request" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="433.76470588235316" y="237" as="sourcePoint" />
+            <mxPoint x="525.5294117647059" y="177" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c3" value="JWT Token" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="190" as="sourcePoint" />
+            <mxPoint x="471.7647058823528" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c4" parent="1" source="auth" target="authdb" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="Authorized Request (JWT)" parent="1" source="gateway" target="account" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" source="account" target="accountdb" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="Internal API Call" parent="1" source="account" target="txn" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="1" source="txn" target="txndb" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" source="account" target="loan" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
