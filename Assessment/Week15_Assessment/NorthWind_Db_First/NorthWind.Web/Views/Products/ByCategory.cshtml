@@ -1,0 +1,221 @@
+﻿@model IEnumerable<NorthWindCatalog.Services.DTOs.ProductDto>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<style>
+    .products-section {
+        background: linear-gradient(135deg, #f8f9fa, #eef3f8);
+        min-height: 100vh;
+        padding-top: 40px;
+        padding-bottom: 60px;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #198754, #157347, #0f5132);
+        color: white;
+        border-radius: 24px;
+        padding: 50px 30px;
+        box-shadow: 0 10px 30px rgba(25, 135, 84, 0.25);
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .page-header::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .page-header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            margin-bottom: 0;
+            opacity: 0.95;
+            font-size: 1.05rem;
+        }
+
+    .product-card {
+        border: none;
+        border-radius: 20px;
+        transition: all 0.35s ease;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        background: #fff;
+        overflow: hidden;
+        position: relative;
+    }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+        }
+
+        .product-card .card-body {
+            padding: 24px;
+        }
+
+    .product-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 18px;
+        min-height: 48px;
+    }
+
+    .price-box {
+        background: linear-gradient(135deg, #198754, #20c997);
+        color: white;
+        border-radius: 16px;
+        padding: 16px;
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(25, 135, 84, 0.18);
+    }
+
+        .price-box .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .price-box .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+    .info-label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+
+    .info-value {
+        color: #212529;
+        font-weight: 700;
+    }
+
+    .stock-badge {
+        font-size: 0.85rem;
+        padding: 8px 14px;
+        border-radius: 50px;
+        font-weight: 600;
+    }
+
+    .stock-high {
+        background-color: rgba(25, 135, 84, 0.12);
+        color: #198754;
+    }
+
+    .stock-medium {
+        background-color: rgba(255, 193, 7, 0.16);
+        color: #b58100;
+    }
+
+    .stock-low {
+        background-color: rgba(220, 53, 69, 0.12);
+        color: #dc3545;
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #212529;
+    }
+
+    .section-subtitle {
+        color: #6c757d;
+    }
+</style>
+
+<div class="products-section">
+    <div class="container">
+
+        <div class="page-header text-center">
+            <h1 class="display-5">Our Products</h1>
+            <p class="lead">
+                Explore product details, pricing, and inventory information in a refined and modern layout.
+            </p>
+        </div>
+
+        <div class="text-center mb-5">
+            <h2 class="section-title">Available Products</h2>
+            <p class="section-subtitle">Browse current inventory and product value insights</p>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var stockClass = item.UnitsInStock > 50
+                    ? "stock-high"
+                    : item.UnitsInStock > 20
+                        ? "stock-medium"
+                        : "stock-low";
+
+                var stockText = item.UnitsInStock > 50
+                    ? "In Stock"
+                    : item.UnitsInStock > 20
+                        ? "Limited Stock"
+                        : "Low Stock";
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card product-card h-100">
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="product-title mb-0">@item.ProductName</h5>
+                                <span class="stock-badge @stockClass">@stockText</span>
+                            </div>
+
+                            <div class="price-box">
+                                <div class="label">Unit Price</div>
+                                <div class="price">@item.UnitPrice.ToString("C")</div>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="info-label">
+                                    <i class="bi bi-box-seam me-2"></i>Units In Stock
+                                </span>
+                                <span class="info-value">@item.UnitsInStock</span>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="info-label">
+                                    <i class="bi bi-bar-chart-line me-2"></i>Inventory Value
+                                </span>
+                                <span class="info-value">@item.InventoryValue.ToString("C")</span>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-dark w-100 rounded-pill py-2 fw-semibold">
+                                    <i class="bi bi-eye me-2"></i> View Details
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
