@@ -1,0 +1,211 @@
+﻿@model IEnumerable<NorthWindCatalog.Services.DTOs.CategorySummaryDto>
+
+@{
+    ViewData["Title"] = "Category Summary";
+}
+
+<style>
+    .summary-section {
+        background: linear-gradient(135deg, #f8f9fa, #eef3f8);
+        min-height: 100vh;
+        padding-top: 40px;
+        padding-bottom: 60px;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #6f42c1, #5a32a3, #432874);
+        color: white;
+        border-radius: 24px;
+        padding: 50px 30px;
+        box-shadow: 0 10px 30px rgba(111, 66, 193, 0.25);
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .page-header::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .page-header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            margin-bottom: 0;
+            opacity: 0.95;
+            font-size: 1.05rem;
+        }
+
+    .summary-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+    .table-modern {
+        margin-bottom: 0;
+    }
+
+        .table-modern thead {
+            background: #f8f9fc;
+        }
+
+            .table-modern thead th {
+                border: none;
+                padding: 18px 20px;
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: #495057;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+
+        .table-modern tbody td {
+            padding: 18px 20px;
+            vertical-align: middle;
+            border-color: #f1f3f5;
+            font-size: 0.95rem;
+        }
+
+        .table-modern tbody tr {
+            transition: all 0.25s ease;
+        }
+
+            .table-modern tbody tr:hover {
+                background: #f8f9ff;
+                transform: scale(1.002);
+            }
+
+    .category-name {
+        font-weight: 700;
+        color: #212529;
+    }
+
+    .badge-count {
+        background: rgba(13, 110, 253, 0.12);
+        color: #0d6efd;
+        padding: 8px 14px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    .price-highlight {
+        font-weight: 700;
+        color: #198754;
+        font-size: 1rem;
+    }
+
+    .product-highlight {
+        font-weight: 600;
+        color: #6f42c1;
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #212529;
+    }
+
+    .section-subtitle {
+        color: #6c757d;
+    }
+
+    .table-responsive {
+        border-radius: 22px;
+        overflow: hidden;
+    }
+</style>
+
+<div class="summary-section">
+    <div class="container">
+
+        <div class="page-header text-center">
+            <h1 class="display-5">Category Summary Dashboard</h1>
+            <p class="lead">
+                Analyze product categories, pricing trends, and top-performing inventory insights.
+            </p>
+        </div>
+
+        <div class="text-center mb-5">
+            <h2 class="section-title">Business Overview</h2>
+            <p class="section-subtitle">
+                Professional category analytics with clean enterprise-level presentation
+            </p>
+        </div>
+
+        <div class="summary-card">
+            <div class="table-responsive">
+                <table class="table table-modern align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                <i class="bi bi-grid me-2"></i>
+                                Category
+                            </th>
+
+                            <th>
+                                <i class="bi bi-box-seam me-2"></i>
+                                Product Count
+                            </th>
+
+                            <th>
+                                <i class="bi bi-currency-dollar me-2"></i>
+                                Average Price
+                            </th>
+
+                            <th>
+                                <i class="bi bi-star-fill me-2"></i>
+                                Most Expensive Product
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="category-name">
+                                        @item.CategoryName
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="badge-count">
+                                        @item.ProductCount Products
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="price-highlight">
+                                        @item.AvgPrice.ToString("C")
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="product-highlight">
+                                        @item.MostExpensiveProduct
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
